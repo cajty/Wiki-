@@ -1,15 +1,7 @@
 {
-    "name": "youcode/youevent",
     "autoload": {
         "psr-4": {
             "App\\": "app/"
         }
-    },
-    "authors": [
-        {
-            "name": "IBNESSAYEH",
-            "email": "abdellatifibnessayeh@gmail.com"
-        }
-    ],
-    "require": {}
+    }
 }

@@ -2,13 +2,13 @@
 
 namespace App\core;
 
-use App\controllers\HomeController;
+
 use App\controllers\_404;
 class App {
     private static $controller ;
     private static $method = "index";
     private static function splitURL() {
-        $url = $_POST['url'] ?? 'home';
+        $url = $_GET['url'] ?? 'home';
         $url = trim($url, "/");
     
         return explode("/", $url);
@@ -18,9 +18,6 @@ class App {
         $url = self::splitURL();
         $controllerName = ucwords($url[0]) . "Controller";
         $controllerClass = "App\\controllers\\" . $controllerName;
-
-        self::$controller = new $controllerClass();
-
         if(!empty($url[1])){
 
                 self::$method = $url[1];

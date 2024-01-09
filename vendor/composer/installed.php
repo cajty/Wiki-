@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'youcode/mvc',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'name' => '__root__',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'aa2bb981d51c73f030f1ae259619d5fcdaabc058',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'youcode/mvc' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+        '__root__' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'aa2bb981d51c73f030f1ae259619d5fcdaabc058',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

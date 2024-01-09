@@ -1,12 +1,9 @@
 
-
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/core/config.php';
 
 use App\core\App;
-
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +12,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>YouEvent</title>
+    <title>wike</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -33,18 +30,11 @@ session_start();
                 <li class="nav-item">
                     <a class="nav-link" href="<?= ROOT ?>">home</a>
                 </li>
-               
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= ROOT ?>recue/mesRecue/1">Reçue</a>
+                    <a class="nav-link" href="<?= ROOT ?>account">Reservation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= ROOT ?>reservation">Reservation</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= ROOT ?>organisateur">Dashboard Organisateur</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">DashboardAdmin</a>
+                    <a class="nav-link" href="<?= ROOT ?>login">login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Login</a>
@@ -61,6 +51,3 @@ session_start();
     <?php
     
 App::loadController();
-
-
-

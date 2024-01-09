@@ -1,9 +1,9 @@
 <?php 
 
 // pour eviter le probleme des paths css/js/images
-define("ROOT","http://localhost/youevent/public/");
+define("ROOT","http://localhost/Wiki-/public/");
 
-define("DBNAME","youevent");
+define("DBNAME","wike");
 define("DBHOST","localhost");
 define("DBUSER","root");
 define("DBPASSWORD","");
