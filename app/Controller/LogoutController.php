@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\controllers\UserController;
+use App\Controller\UserController;
+
 
 class RegisterController
 {
@@ -18,6 +19,6 @@ class RegisterController
     }
     public function login()
     {
-        $this->user->loginUsern();
+        $this->user->loginUser();
     }
 }

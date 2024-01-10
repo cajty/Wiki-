@@ -5,7 +5,7 @@ CREATE TABLE users (
     last_name VARCHAR(30),
     email VARCHAR(50),
     password VARCHAR(30),
-    isAdmin BOOLEAN
+    isAdmin INT
 ) engine = innodb;
 
 CREATE TABLE categories (
@@ -17,7 +17,7 @@ CREATE TABLE wikis (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255),
     content VARCHAR(15535),
-    visibility BOOLEAN,
+    visibility INT,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users (id),
     category_id INT,

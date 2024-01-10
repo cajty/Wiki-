@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\controllers\UserController;
+use App\Controller\UserController;
 
-class RegisterController
+
+class AccountController
 {
 
     private $user;
@@ -14,10 +15,10 @@ class RegisterController
     }
     public function index()
     {
-        include_once("../views/login.php");
+        include_once("../app/views/account.php");
     }
-    public function login()
+    public function register()
     {
-        $this->user->loginUsern();
+        $this->user->registration();
     }
 }

@@ -47,9 +47,9 @@ class UserModel extends Database{
     {
         return $this->password;
     }
-    public function setIsAdmin()
+    public function setIsAdmin($b)
     {
-        $this->isAdmin = false;
+        $this->isAdmin = $b;
     }
     public function getIsAdmin()
     {
@@ -77,15 +77,18 @@ class UserModel extends Database{
 
     public function loginUser($email, $password)
     {
-        var_dump($email);
-        var_dump($password);
         $conn =  $this->connect();
         $sql = "SELECT * FROM `users` where email = :email";
         $query = $conn->prepare($sql);
         $query->bindValue(':email',$email);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
-        return $result;
+        if ($result && password_verify($password, $result->password)) {
+
+            return $result;
+        } else {
+            return false; 
+        }
     }
 
 

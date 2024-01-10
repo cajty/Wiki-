@@ -24,7 +24,7 @@
         <div class="row justify-content-center  p-5">
             <div class="col-lg-4 col-md-6 col-sm-8 border   mb-2 text-bg-dark p-3">
                 <h1>Login</h1>
-                <form  action="http://localhost:8000/User/registration" method="POST">
+                <form  action="http://localhost/Wiki-/public/Account/register" method="POST">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
                         <input type="text" class="form-control" name="firstname" id="firstName">
@@ -41,10 +41,10 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" id="password">
                     </div>
-                    <button type="submit"  name="submit" value="regester" class="btn btn-primary">Submit</button>
+                    <button type="submit"  name="submit" value="register" class="btn btn-primary">Submit</button>
                 </form>
                 <hr>
-                <p>I have an account <a href="login.php">Login</a></p>
+                <p>I have an account <a href="http://localhost/Wiki-/public/Login">Login</a></p>
             </div>
         </div>
     </div>
