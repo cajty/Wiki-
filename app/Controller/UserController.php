@@ -42,15 +42,12 @@ class UserController {
             if ($userModel->registerUser()) {
                 include_once("../app/views/login.php");
             }
-        }else{
-            echo"berbrb";
-            die();
         }
     }
+    
 
     public function loginUser()
     {
-        session_start();
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit'] == 'login') {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -58,23 +55,23 @@ class UserController {
             $userModel = new UserModel();
             $user = $userModel->loginUser($email, $password);
             var_dump($user);
-            die();
-
+           
             if ($user) {
                 $_SESSION['id'] = $user->id;
+            
                 $_SESSION['email'] = $user->email;
                 $_SESSION['first'] = $user->first_name;
                 $_SESSION['last'] = $user->last_name;
                 $_SESSION['isAdmin'] = $user->isAdmin;
 
                 if ($_SESSION['isAdmin'] == 0) {
-                    include_once("../app/views/dashboard.php");
-                } else {
                     include_once("../app/views/home.php");
+                } else {
+                    include_once("../app/views/dashboard.php");
                 }
             }
         } else {
-            include_once("../app/views/login.php");
+            include_once("../app/views/home.php");
         }
     }
 }

@@ -64,29 +64,36 @@ class WikeModel extends Database
     {
         $this->category_id = $category_id;
     }
+
+    public function getWikis()
+    {
+        $conn = $this->connect();
+        $query = "SELECT * FROM `wikis`";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($result) {
+            return $result;
+        }else {
+            return false; 
+        }
+    }
+    
     public function createWiki()
     {
         $conn = $this->connect();
         $query = "INSERT INTO wikis (title, content, visibility, user_id, category_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->execute([$this->getTitle(), $this->getContent(), $this->getVisibility(), $this->getUserId(), $this->getCategoryId()]);
-
-        return $stmt->rowCount();
     }
 
-    public function updateWiki($id, $title, $content, $visibility, $category_id)
+    public function updateWiki($wiki_id)
     {
-        $this->setTitle($title);
-        $this->setContent($content);
-        $this->setVisibility($visibility);
-        $this->setCategoryId($category_id);
-
+      
         $conn = $this->connect();
-        $query = "UPDATE wikis SET title = ?, content = ?, visibility = ?, category_id = ? WHERE id = ?";
+        $query = "UPDATE wikis SET title = ?, content = ?,  category_id = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$this->getTitle(), $this->getContent(), $this->getVisibility(), $this->getCategoryId(), $id]);
-
-        return $stmt->rowCount();
+        $stmt->execute([$this->getTitle(), $this->getContent(), $this->getCategoryId(),$wiki_id]);
     }
 
     public function deleteWiki($id)
@@ -95,8 +102,5 @@ class WikeModel extends Database
         $query = "DELETE FROM wikis WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->execute([$id]);
-
-        return $stmt->rowCount();
     }
 }
-

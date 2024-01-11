@@ -1,16 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .sidebar {
+            height: 95vh;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown d-block d-md-none">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown
                         </a>
@@ -40,7 +45,7 @@
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
@@ -49,12 +54,12 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 bg-light p-4  bg-dark">
+            <div class="col-md-3 bg-dark p-4 d-none d-md-block sidebar">
                 <!-- Sidebar content goes here -->
-                <h4 class="text-bg-dark">Sidebar</h4>
-                <ul class="list-group ">
-                    <li class="list-group-item">Item 1</li>
-                    <li class="list-group-item">Item 2</li>
+                <h4 class="text-light">Sidebar</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">wiki</li>
+                    <li class="list-group-item">tag 2</li>
                     <li class="list-group-item">Item 3</li>
                 </ul>
             </div>
@@ -70,14 +75,25 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach ($r as $row) { ?>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><?php echo $row->title; ?></td>
+                                <td><?php echo $row->content; ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="setId(<?php echo $row->id; ?>)">Edit</button>
+                                    <a class='btn btn-danger btn-sm' href="http://localhost/Wiki-/public/Wiki/deleteWiki/<?php echo $row->id; ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
+                            <td>$row->title</td>
                             <td>Otto</td>
                             <td>@mdo</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
+                        <th>
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>@fat</td>

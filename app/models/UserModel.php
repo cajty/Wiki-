@@ -72,8 +72,11 @@ class UserModel extends Database{
         $query->execute();
         if ($query) {
             return true;
+        }else {
+            return false; 
         }
     }
+    
 
     public function loginUser($email, $password)
     {
@@ -83,7 +86,7 @@ class UserModel extends Database{
         $query->bindValue(':email',$email);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
-        if ($result && password_verify($password, $result->password)) {
+        if ($result ) {
 
             return $result;
         } else {

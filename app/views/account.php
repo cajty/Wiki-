@@ -9,48 +9,45 @@
 </head>
 
 <body>
-    <div class="container">
-        <!-- Content here -->
-    </div>
-    <nav class="navbar navbar-expand-lg text-bg-secondary py-3  ">
-
-        <b class="navbar-brand   text-white  px-2">
-            My Website
-        </b>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-3">
+        <div class="container">
+            <a class="navbar-brand" href="#">My Website</a>
+        </div>
     </nav>
 
     <div class="container p-5">
-        <div class="row justify-content-center  p-5">
-            <div class="col-lg-4 col-md-6 col-sm-8 border   mb-2 text-bg-dark p-3">
-                <h1>Login</h1>
-                <form  action="http://localhost/Wiki-/public/Account/register" method="POST">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-8 border rounded mb-2 p-3">
+                <h1 class="text-center">Login</h1>
+                <form action="Account/register" method="POST">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
                         <input type="text" class="form-control" name="firstname" id="firstName">
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control"  name="lastname" id="lastName">
+                        <input type="text" class="form-control" name="lastname" id="lastName">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control"  name="email" id="email">
+                        <input type="email" class="form-control" name="email" id="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" id="password">
                     </div>
-                    <button type="submit"  name="submit" value="register" class="btn btn-primary">Submit</button>
+                    <div class="text-center">
+                        <button type="submit" name="submit" value="register" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
                 <hr>
-                <p>I have an account <a href="http://localhost/Wiki-/public/Login">Login</a></p>
+                <p class="text-center">Already have an account? <a href="http://localhost/Wiki-/public/Login">Login</a></p>
             </div>
         </div>
     </div>
 
-    <footer class="footer text-bg-secondary text-center">
-        <div class="container p-3">
+    <footer class="footer text-center py-3 bg-secondary text-white">
+        <div class="container">
             <p>&copy; 2023 My Website. All rights reserved.</p>
         </div>
     </footer>

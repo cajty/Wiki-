@@ -18,24 +18,22 @@ class Router
         } else {
             $uri = $_GET['uri'];
         }
-     
+
 
         $uri = explode('/', trim($uri, '/'));
-       
-        
+
+
         if (!empty($uri[0])) {
             $controller = 'App\Controller\\' . $uri[0] . 'Controller';
             var_dump($controller);
-           
-           
+
+
             unset($uri[0]);
             if (class_exists($controller)) {
                 var_dump($controller);
                 $this->controller = $controller;
-               
             } else {
-                echo"sdfsdf";
-             
+                echo "sdfsdf";
             }
         }
 
@@ -45,10 +43,10 @@ class Router
             if (method_exists($this->controller, $method)) {
                 $this->method = $method;
             } else {
-              echo 'this method not exist';
+                echo 'this method not exist';
             }
         }
-       
+
         $object = new $this->controller;
 
         if (isset($uri[2])) {
@@ -57,7 +55,5 @@ class Router
         }
 
         call_user_func_array([$object, $this->method], $this->param);
-
     }
-   
 }
