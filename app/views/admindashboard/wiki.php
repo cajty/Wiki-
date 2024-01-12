@@ -58,22 +58,23 @@
                 <!-- Sidebar content goes here -->
                 <h4 class="text-light">Sidebar</h4>
                 <ul class="list-group">
-                    <li class="list-group-item">wiki</li>
+                    <li class="list-group-item"><a href="http://localhost/Wiki-/public/Admin/">wiki</a></li>
                     <li class="list-group-item"> <a href="http://localhost/Wiki-/public/Admin/getTags">tag</a></li>
-                    <li class="list-group-item">Item 3</li>
+                    <li class="list-group-item"><a href="http://localhost/Wiki-/public/Admin/getCategories">Categorie</a></li>
                 </ul>
             </div>
             <div class="col-md-9 p-4">
-                <h1 class="mb-4">Dashboard</h1>
+                <h1 class="mb-4">Wiki </h1>
+                <h2>FOR visibility IF 1 visible and 0 invisible </h2>
                 <div class="row">
                     <?php foreach ($r as $row) { ?>
                         <div class="col-md-4">
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <<?= $row->title ?> /h5>
+                                        <?= $row->title  ?>  <br> visibility:<?=$row->visibility?> </h5>
                                             <p class="card-text"><?= $row->content ?></p>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                                            <a class='btn btn-warning btn-sm' href="http://localhost/Wiki-/public/Admin/visibility/<?= $row->id ?>" ">Visible</a>
                                             <a class='btn btn-danger btn-sm' href="http://localhost/Wiki-/public/Admin/deleteWiki/<?= $row->id ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
                                 </div>
                             </div>
