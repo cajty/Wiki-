@@ -68,17 +68,44 @@ class WikeModel extends Database
     public function getWikis()
     {
         $conn = $this->connect();
-        $query = "SELECT * FROM `wikis`";
+        $query = "SELECT * FROM `wikis`  ";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         if ($result) {
             return $result;
-        }else {
-            return false; 
+        } else {
+            return false;
         }
     }
-    
+
+    public function getWikisUser()
+    {
+        $conn = $this->connect();
+        $query = "SELECT * FROM `wikis` WHERE ";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function getWikisAUthor()
+    {
+        $conn = $this->connect();
+        $query = "SELECT * FROM `wikis` WHERE user_id = ? ";
+        $stmt = $conn->prepare($query);
+        $stmt->execute( $this->getUserId());
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
     public function createWiki()
     {
         $conn = $this->connect();
@@ -89,11 +116,11 @@ class WikeModel extends Database
 
     public function updateWiki($wiki_id)
     {
-      
+
         $conn = $this->connect();
         $query = "UPDATE wikis SET title = ?, content = ?,  category_id = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$this->getTitle(), $this->getContent(), $this->getCategoryId(),$wiki_id]);
+        $stmt->execute([$this->getTitle(), $this->getContent(), $this->getCategoryId(), $wiki_id]);
     }
 
     public function deleteWiki($id)

@@ -59,52 +59,27 @@
                 <h4 class="text-light">Sidebar</h4>
                 <ul class="list-group">
                     <li class="list-group-item">wiki</li>
-                    <li class="list-group-item">tag 2</li>
+                    <li class="list-group-item"> <a href="http://localhost/Wiki-/public/Admin/getTags">tag</a></li>
                     <li class="list-group-item">Item 3</li>
                 </ul>
             </div>
             <div class="col-md-9 p-4">
                 <h1 class="mb-4">Dashboard</h1>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($r as $row) { ?>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><?php echo $row->title; ?></td>
-                                <td><?php echo $row->content; ?></td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="setId(<?php echo $row->id; ?>)">Edit</button>
-                                    <a class='btn btn-danger btn-sm' href="http://localhost/Wiki-/public/Wiki/deleteWiki/<?php echo $row->id; ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>$row->title</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="row">
+                    <?php foreach ($r as $row) { ?>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <<?= $row->title ?> /h5>
+                                            <p class="card-text"><?= $row->content ?></p>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                                            <a class='btn btn-danger btn-sm' href="http://localhost/Wiki-/public/Admin/deleteWiki/<?= $row->id ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </div>
