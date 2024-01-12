@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Login</title>
 </head>
 
@@ -17,34 +16,39 @@
     </nav>
 
     <div class="container mt-5">
-        <div class="card p-4">
-            <h4 class="mb-4">Select an Option:</h4>
+        <h4 class="mt-4">Fill in the Details:</h4>
+        <form action="http://localhost/Wiki-/public/Wiki/createWiki/" method="POST">
             <div class="mb-3">
-                <select class="form-select" name="selectedOption">
-                <?php foreach ($r as $row) { ?>
-                        <option  value="<?= $row->name; ?>"><?= $row->name; ?></option>;
-                    
-                        <?php } ?>
+                <label for="exampleFormControlSelect1" class="form-label">Category</label>
+                <select class="form-select" name="selectCategorie" id="exampleFormControlSelect1">
+                    <?php foreach ($r as $row) { ?>
+                        <option value="<?= $row->id; ?>"><?= $row->name; ?></option>
+                    <?php } ?>
                 </select>
             </div>
-
-            <h4 class="mt-4">Fill in the Details:</h4>
-            <form action="http://localhost/Wiki-/public/Wiki/createWiki/1" method="POST">
-               
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="text" class="form-control" name="title" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <div class="row">
+                    <?php foreach ($t as $row) { ?>
+                        <div class="col-md-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="<?= $row->id; ?>" name="selectTag[]" value="<?= $row->id; ?>">
+                                <label class="form-check-label" for="<?= $row->name; ?>"><?= $row->name; ?></label>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                    <textarea class="form-control" name="content" id="exampleFormControlTextarea1"
-                        rows="11"></textarea>
-                </div>
-                <button type="submit" name="submit" value="wikeCreat"
-                    class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="Enter the title" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="11" placeholder="Enter the content" required></textarea>
+            </div>
+            <button type="submit" name="submit" value="wikeCreat" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 
     <footer class="footer mt-5 py-3 text-center bg-secondary text-white">
@@ -53,8 +57,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

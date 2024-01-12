@@ -107,6 +107,13 @@ class AdminController
         include_once("../app/views/admindashboard/wiki.php");
     }
 
+    public function visibility($wiki_id){
+        $model = new WikeModel();
+        $model->deleteWiki($wiki_id);
+        $r = $model->getWikis();
+        include_once("../app/views/admindashboard/wiki.php");
+    }
+
 
 
 }
