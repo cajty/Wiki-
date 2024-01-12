@@ -2,7 +2,7 @@
 
 class Router
 {
-    private $controller = 'App\Controller\HomeController';
+    private $controller = 'App\Controller\AccueilController';
     private $method = 'index';
     private $param = [];
 
@@ -25,12 +25,11 @@ class Router
 
         if (!empty($uri[0])) {
             $controller = 'App\Controller\\' . $uri[0] . 'Controller';
-            var_dump($controller);
+            
 
 
             unset($uri[0]);
             if (class_exists($controller)) {
-                var_dump($controller);
                 $this->controller = $controller;
             } else {
                 echo "sdfsdf";
