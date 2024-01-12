@@ -5,26 +5,11 @@ namespace App\Controller;
 
 
 use App\models\UserModel;
+use App\models\WikeModel;
 
 class UserController {
-    public function index()
-    {
-        if (!empty($_SESSION['isAdmin'])) {
-            if ($_SESSION['isAdmin'] == false) {
-                header("Location: Home.php");
-                exit();
-            }
-            if ($_SESSION['isAdmin'] == true) {
-                include_once("../app/views/home.php");
-                exit();
-            } else {
-                include_once("../app/views/login.php");
-            }
-        }
-    }
-
-   
-
+ 
+  
     public function registration()
     {  
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit'] == 'register') {
@@ -54,7 +39,7 @@ class UserController {
 
             $userModel = new UserModel();
             $user = $userModel->loginUser($email, $password);
-            var_dump($user);
+            
            
             if ($user) {
                 $_SESSION['id'] = $user->id;
@@ -65,9 +50,11 @@ class UserController {
                 $_SESSION['isAdmin'] = $user->isAdmin;
 
                 if ($_SESSION['isAdmin'] == 0) {
-                    include_once("../app/views/home.php");
+                    $wiki = new WikeModel();
+                    $r = $wiki->getWikis();
+                    include_once("../app/views/admindashboard/wiki.php");
                 } else {
-                    include_once("../app/views/dashboard.php");
+                   // include_once("../app/views/dashboard.php");
                 }
             }
         } else {

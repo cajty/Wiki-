@@ -57,22 +57,12 @@ class TagModel extends Database
         }
     }
 
-    public function searchByTag($searchTerm)
-    {
-        $conn =  $this->connect();
-        $sql = "SELECT * FROM `tags` WHERE `name` LIKE ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(["%$searchTerm%"]);
-        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-        if ($result) {
-            return $result;
-        }
-    }
+    
 
     public function delete($id)
     {
         $conn =  $this->connect();
-        $sql = "DELETE FROM `tags` WHERE `tagID` = ?";
+        $sql = "DELETE FROM `tags` WHERE `id` = ?";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([$id]);
         if ($result) {
