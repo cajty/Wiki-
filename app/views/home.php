@@ -21,16 +21,16 @@
             <h4 class="mb-4">Select an Option:</h4>
             <div class="mb-3">
                 <select class="form-select" name="selectedOption">
-                    <?php
-                    foreach ($r as $row) {
-                        echo "<option value=\"$row->name\">$row->name</option>";
-                    }
-                    ?>
+                <?php foreach ($r as $row) { ?>
+                        <option  value="<?= $row->name; ?>"><?= $row->name; ?></option>;
+                    
+                        <?php } ?>
                 </select>
             </div>
 
             <h4 class="mt-4">Fill in the Details:</h4>
-            <form action="http://localhost/Wiki-/public/Wiki/createWiki" method="POST">
+            <form action="http://localhost/Wiki-/public/Wiki/createWiki/1" method="POST">
+               
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
                     <input type="text" class="form-control" name="title" id="exampleFormControlInput1"

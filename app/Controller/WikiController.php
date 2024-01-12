@@ -3,26 +3,16 @@
 namespace App\Controller;
 
 use App\models\WikeModel;
-
+use App\Controller\CategorieController;
 
 class WikiController
 {
-    public function index()
-    {
-        $wiki = new WikeModel();
-        $r = $wiki->getWikis();
-
-        include_once("../app/views/dashboard.php");
-    }
     public function createWiki($category)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit'] == 'wikeCreat') {
             $title = $_POST['title'];
             $content = $_POST['content'];
-            $category = $_POST['selectedOption'];
-
-
-
+           
             $wiki = new WikeModel();
             $wiki->setTitle($title);
             $wiki->setContent($content);
@@ -30,9 +20,10 @@ class WikiController
             $wiki->setUserId(2);
             $wiki->setCategoryId($category);
             $wiki->createWiki();
-
-
+            $categorie = new CategorieController();
+            $r = $categorie->getCategories();
             include_once("../app/views/home.php");
+        
         }
     }
     public function updateWiki($wiki_id)
@@ -54,8 +45,5 @@ class WikiController
     {
         $wiki = new WikeModel();
         $wiki->deleteWiki($wiki_id);
-        $r = $wiki->getWikis();
-
-        include_once("../app/views/dashboard.php");
     }
 }
