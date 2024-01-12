@@ -24,22 +24,10 @@ class TagController
     public function getTags()
     {
         $tag = new TagModel();
-        $tags = $tag->getTags();
-        include_once '../app/View/admin/tags.php';
+        return  $tag->getTags();
     }
 
-    public function search()
-    {
-        if (isset($_GET['search'])) {
-            $searchTerm = $_GET['search'];
-            $tag = new TagModel();
-            $searchResults = $tag->searchByTag($searchTerm);
-            if ($searchResults) {
-                include_once '../app/View/admin/includesAjax/tags.php';
-                exit();
-            }
-        }
-    }
+   
 
     public function update()
     {
