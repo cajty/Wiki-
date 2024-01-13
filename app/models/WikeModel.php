@@ -130,9 +130,15 @@ class WikeModel extends Database
         $stmt = $conn->prepare($query);
         $stmt->execute([$id]);
     }
-    public function visibility($wiki_id){
+    public function visible($wiki_id){
         $conn = $this->connect();
         $query = "UPDATE wikis SET  `visibility` = 1 WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([$wiki_id]);
+    }
+    public function invisible($wiki_id){
+        $conn = $this->connect();
+        $query = "UPDATE wikis SET  `visibility` = 0 WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->execute([$wiki_id]);
     }
