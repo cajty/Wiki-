@@ -10,25 +10,7 @@ use App\models\WikeModel;
 class UserController {
  
   
-    public function registration()
-    {  
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit'] == 'register') {
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $userModel = new UserModel();
-            $userModel->setFirstname($firstname);
-            $userModel->setLastname($lastname);
-            $userModel->setEmail($email);
-            $userModel->setPassword($password);
-            $userModel->setIsAdmin(0);
-
-            if ($userModel->registerUser()) {
-                include_once("../app/views/login.php");
-            }
-        }
-    }
+    
     
 
     public function loginUser()

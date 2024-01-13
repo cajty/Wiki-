@@ -25,8 +25,10 @@ class AdminController
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"]  == "createTags") {
             $name = $_POST['name'];
             $model = new TagModel();
+            if(!empty($name)) {  
             $model->setName($name);
             $model->create();
+            }
             $tag = $model->getTags();
             include_once("../app/views/admindashboard/tags.php");
         }
@@ -41,6 +43,7 @@ class AdminController
     public function updateTag($id)
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"]  == "updateTag") {
+        
         $mane = $_POST['mane'];
         $model = new TagModel();
         $model->setName($mane);
@@ -65,8 +68,10 @@ class AdminController
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"]  == "creatCategories") {
             $name = $_POST['name'];
             $model = new  CategorieModel();
+            if(!empty($name)) { 
             $model->setName($name);
             $model->create();
+            }
             $cat = $model->getCategories();
             include_once("../app/views/admindashboard/Categorie.php");
         }
@@ -107,9 +112,15 @@ class AdminController
         include_once("../app/views/admindashboard/wiki.php");
     }
 
-    public function visibility($wiki_id){
+    public function visible($wiki_id){
         $model = new WikeModel();
-        $model->visibility($wiki_id);
+        $model->visible($wiki_id);
+        $r = $model->getWikis();
+        include_once("../app/views/admindashboard/wiki.php");
+    }
+    public function invisible($wiki_id){
+        $model = new WikeModel();
+        $model->invisible($wiki_id);
         $r = $model->getWikis();
         include_once("../app/views/admindashboard/wiki.php");
     }
