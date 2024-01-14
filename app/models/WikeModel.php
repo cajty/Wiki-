@@ -9,11 +9,16 @@ use PDO;
 
 class WikeModel extends Database
 {
+    private $id;
     private $title;
     private $content;
     private $visibility;
     private $user_id;
     private $category_id;
+
+    public function getId(){
+        return $this->id;
+    }
     public function getTitle()
     {
         return $this->title;
@@ -39,7 +44,9 @@ class WikeModel extends Database
         return $this->category_id;
     }
 
-    // Setter methods
+    public function setId($id){
+        $this->id = $id;
+    }
     public function setTitle($title)
     {
         $this->title = $title;
@@ -112,43 +119,44 @@ class WikeModel extends Database
         $query = "INSERT INTO wikis (title, content, visibility, user_id, category_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->execute([$this->getTitle(), $this->getContent(), $this->getVisibility(), $this->getUserId(), $this->getCategoryId()]);
+        return $conn->lastInsertId();
     }
 
-    public function updateWiki($wiki_id)
+    public function updateWiki()
     {
 
         $conn = $this->connect();
         $query = "UPDATE wikis SET title = ?, content = ?,  category_id = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$this->getTitle(), $this->getContent(), $this->getCategoryId(), $wiki_id]);
+        $stmt->execute([$this->getTitle(), $this->getContent(), $this->getCategoryId(), $this->getId()]);
     }
 
-    public function deleteWiki($id)
+    public function deleteWiki()
     {
         $conn = $this->connect();
         $query = "DELETE FROM wikis WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$id]);
+        $stmt->execute([$this->getId()]);
     }
-    public function visible($wiki_id){
+    public function visible(){
         $conn = $this->connect();
         $query = "UPDATE wikis SET  `visibility` = 1 WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$wiki_id]);
+        $stmt->execute([$this->getId()]);
     }
-    public function invisible($wiki_id){
+    public function invisible(){
         $conn = $this->connect();
         $query = "UPDATE wikis SET  `visibility` = 0 WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$wiki_id]);
+        $stmt->execute([$this->getId()]);
     }
 
     
-    public function  detailWiki($wiki_id){
+    public function  detailWiki(){
         $conn = $this->connect();
         $query = "SELECT * FROM `wikis` WHERE  id = ? ";
         $stmt = $conn->prepare($query);
-        $stmt->execute([ $wiki_id]);
+        $stmt->execute([ $this->getId()]);
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         if ($result) {
             return $result;

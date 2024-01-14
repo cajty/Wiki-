@@ -8,7 +8,7 @@ use PDO;
 
 
 class UserModel extends Database{
-
+   
     private $firstname;
     private $lastname;
     private $email;
