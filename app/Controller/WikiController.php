@@ -28,7 +28,6 @@ class WikiController
             $wiki->setCategoryId($category);
             $wiki->createWiki();
             $categorie = new CategorieController();
-            $tag = new TagController();
             $r = $categorie->getCategories();
             $t = $tag->getTags();
             include_once("../app/views/home.php");

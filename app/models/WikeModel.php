@@ -82,7 +82,7 @@ class WikeModel extends Database
     public function getWikisUser()
     {
         $conn = $this->connect();
-        $query = "SELECT * FROM `wikis` WHERE ";
+        $query = "SELECT * FROM `wikis` WHERE `visibility` = 1 ";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -97,7 +97,7 @@ class WikeModel extends Database
         $conn = $this->connect();
         $query = "SELECT * FROM `wikis` WHERE user_id = ? ";
         $stmt = $conn->prepare($query);
-        $stmt->execute( $this->getUserId());
+        $stmt->execute( [$this->getUserId()]);
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         if ($result) {
             return $result;
@@ -141,5 +141,20 @@ class WikeModel extends Database
         $query = "UPDATE wikis SET  `visibility` = 0 WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->execute([$wiki_id]);
+    }
+
+    
+    public function  detailWiki($wiki_id){
+        $conn = $this->connect();
+        $query = "SELECT * FROM `wikis` WHERE  id = ? ";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([ $wiki_id]);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+
     }
 }

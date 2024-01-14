@@ -9,7 +9,7 @@ class AccueilController
     public function index()
     {
         $wiki = new WikeModel();
-        $r = $wiki->getWikis();
-        include_once("../app/views/accueil.php");
+        $r = $wiki->getWikisUser();
+        include_once("../app/views/user/accueil.php");
     }
 }
