@@ -3,53 +3,81 @@
 namespace App\Controller;
 
 
-
+use App\models\WikiTagsModel;
 use App\models\CategorieModel;
 use App\models\TagModel;
 use App\models\WikeModel;
 
 class AdminController
 {
+    private $wikiTag;
+    private $wiki;
+    private $categorie;
+    private $tag;
+    public function __construct()
+    {
+        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 0) {
+            $this->wikiTag = new WikiTagsModel();
+            $this->wiki = new WikeModel();
+            $this->categorie = new CategorieModel();;
+            $this->tag = new TagModel();
+        } else {
+            include_once("../app/views/user/header.php");
+            include_once("../app/views/user/login.php");
+            include_once("../app/views/footer.php");
+        }
+    }
     public function index()
     {
-        if ($_SESSION['isAdmin'] == 0) {
-            $wiki = new WikeModel();
-            $r = $wiki->getWikis();
+
+        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 0) {
+            $w = $this->wiki->getWikis();
+            include_once("../app/views/admindashboard/header.php");
+            include_once("../app/views/admindashboard/side.php");
             include_once("../app/views/admindashboard/wiki.php");
-        } else {
-            include_once("../app/views/login");
+            include_once("../app/views/footer.php");
         }
     }
     public function createTags()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"]  == "createTags") {
             $name = $_POST['name'];
-            $model = new TagModel();
-            if(!empty($name)) {  
-            $model->setName($name);
-            $model->create();
+
+            if (!empty($name)) {
+                $this->tag->setName($name);
+                $this->tag->create();
             }
-            $tag = $model->getTags();
+            $tag =  $this->tag->getTags();
+            include_once("../app/views/admindashboard/header.php");
+            include_once("../app/views/admindashboard/side.php");
             include_once("../app/views/admindashboard/tags.php");
+            include_once("../app/views/footer.php");
         }
     }
     public function getTags()
     {
-        $model = new TagModel();
-        $tag = $model->getTags();
+
+        $tag =  $this->tag->getTags();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/tags.php");
+        include_once("../app/views/footer.php");
     }
 
     public function updateTag($id)
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"]  == "updateTag") {
-        
-        $mane = $_POST['mane'];
-        $model = new TagModel();
-        $model->setName($mane);
-        $model->update($id);
-        $tag = $model->getTags();
-        include_once("../app/views/admindashboard/tags.php");
+
+            $mane = $_POST['mane'];
+
+            $this->tag->setName($mane);
+            $this->tag->update($id);
+            $tag =  $this->tag->getTags();
+
+            include_once("../app/views/admindashboard/header.php");
+            include_once("../app/views/admindashboard/side.php");
+            include_once("../app/views/admindashboard/tags.php");
+            include_once("../app/views/footer.php");
         }
     }
 
@@ -58,41 +86,54 @@ class AdminController
     public function deleteTag($id)
     {
 
-        $model = new TagModel();
-        $model->delete($id);
-        $tag = $model->getTags();
+
+        $this->tag->delete($id);
+        $tag =  $this->tag->getTags();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/tags.php");
+        include_once("../app/views/footer.php");
     }
     public function creatCategories()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"]  == "creatCategories") {
             $name = $_POST['name'];
-            $model = new  CategorieModel();
-            if(!empty($name)) { 
-            $model->setName($name);
-            $model->create();
+
+            if (!empty($name)) {
+                $this->categorie->setName($name);
+                $this->categorie->create();
             }
-            $cat = $model->getCategories();
+            $cat =  $this->categorie->getCategories();
+            include_once("../app/views/admindashboard/header.php");
+            include_once("../app/views/admindashboard/side.php");
             include_once("../app/views/admindashboard/Categorie.php");
+            include_once("../app/views/footer.php");
         }
     }
 
     public function getCategories()
     {
-        $model = new  CategorieModel();
-        $cat = $model->getCategories();
+
+        $cat =  $this->categorie->getCategories();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/Categorie.php");
+        include_once("../app/views/footer.php");
     }
 
     public function updateCategories($id)
     {
-        
+
         $mane = $_POST['mane'];
-        $model = new  CategorieModel();
-        $model->setName($mane);
-        $model->update($id);
-        $cat = $model->getCategories();
+
+        $this->categorie->setName($mane);
+        $this->categorie->setId($id);
+        $this->categorie->update();
+        $cat =  $this->categorie->getCategories();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/Categorie.php");
+        include_once("../app/views/footer.php");
     }
 
 
@@ -100,31 +141,46 @@ class AdminController
     public function deleteCategories($id)
     {
 
-        $model = new  CategorieModel();
-        $model->delete($id);
-        $cat = $model->getCategories();
+        $this->categorie->setId($id);
+        $this->categorie->delete();
+        $cat =  $this->categorie->getCategories();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/Categorie.php");
     }
-    public function deleteWiki($id){
-        $model = new WikeModel();
-        $model->deleteWiki($id);
-        $r = $model->getWikis();
+    public function deleteWiki($wiki_id)
+    {
+
+
+        $this->wiki->setId($wiki_id);
+        $this->wikiTag->setId($wiki_id);
+        $this->wikiTag->deleteByWiki();
+        $this->wiki->deleteWiki();
+        $w =  $this->wiki->getWikis();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/wiki.php");
+        include_once("../app/views/footer.php");
     }
 
-    public function visible($wiki_id){
-        $model = new WikeModel();
-        $model->visible($wiki_id);
-        $r = $model->getWikis();
+    public function visible($wiki_id)
+    {
+        $this->wiki->setId($wiki_id);
+        $this->wiki->visible();
+        $w =  $this->wiki->getWikis();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/wiki.php");
+        include_once("../app/views/footer.php");
     }
-    public function invisible($wiki_id){
-        $model = new WikeModel();
-        $model->invisible($wiki_id);
-        $r = $model->getWikis();
+    public function invisible($wiki_id)
+    {
+        $this->wiki->setId($wiki_id);
+        $this->wiki->invisible();
+        $w =  $this->wiki->getWikis();
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/wiki.php");
+        include_once("../app/views/footer.php");
     }
-
-
-
 }

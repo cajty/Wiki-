@@ -10,6 +10,12 @@ class AccueilController
     {
         $wiki = new WikeModel();
         $r = $wiki->getWikisUser();
+        if ($_SESSION['isAdmin'] == 0) {
+            include_once("../app/views/admindashboard/header.php");
+        }
         include_once("../app/views/user/accueil.php");
+        include_once("../app/views/footer.php");
+
     }
+
 }

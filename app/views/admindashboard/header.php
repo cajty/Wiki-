@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap demo</title>
+    <title>Wiki</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        .sidebar {
+        .side {
             height: 95vh;
+           
+           
+           
         }
     </style>
 </head>
@@ -23,10 +26,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="http://localhost/Wiki-/public/Admin/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="http://localhost/Wiki-/Accueil">Accueil</a>
+                        
                     </li>
                     <li class="nav-item dropdown d-md-none d-block ">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +43,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Admin</a>
+                    <a class="nav-link"   href="http://localhost/Wiki-/public/Auteur/" >Auteur</a>  
                     </li>
                 </ul>
                 <div class="dropdown">
@@ -56,14 +60,4 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 bg-dark p-4 d-none d-md-block sidebar">
-                <!-- Sidebar content goes here -->
-                <h4 class="text-light">Admin </h4>
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="http://localhost/Wiki-/public/Admin/">wiki</a></li>
-                    <li class="list-group-item"> <a href="http://localhost/Wiki-/public/Admin/getTags">tag</a></li>
-                    <li class="list-group-item"><a href="http://localhost/Wiki-/public/Admin/getCategories">Categorie</a></li>
-                </ul>
-            </div>
+   
