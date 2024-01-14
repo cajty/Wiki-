@@ -16,7 +16,8 @@ class WikeModel extends Database
     private $user_id;
     private $category_id;
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
     public function getTitle()
@@ -44,7 +45,8 @@ class WikeModel extends Database
         return $this->category_id;
     }
 
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
     public function setTitle($title)
@@ -104,7 +106,7 @@ class WikeModel extends Database
         $conn = $this->connect();
         $query = "SELECT * FROM `wikis` WHERE user_id = ? ";
         $stmt = $conn->prepare($query);
-        $stmt->execute( [$this->getUserId()]);
+        $stmt->execute([$this->getUserId()]);
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         if ($result) {
             return $result;
@@ -138,31 +140,36 @@ class WikeModel extends Database
         $stmt = $conn->prepare($query);
         $stmt->execute([$this->getId()]);
     }
-    public function visible(){
+    public function visible()
+    {
         $conn = $this->connect();
         $query = "UPDATE wikis SET  `visibility` = 1 WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->execute([$this->getId()]);
     }
-    public function invisible(){
+    public function invisible()
+    {
         $conn = $this->connect();
         $query = "UPDATE wikis SET  `visibility` = 0 WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->execute([$this->getId()]);
     }
 
-    
-    public function  detailWiki(){
+
+    public function  detailWiki()
+    {
         $conn = $this->connect();
-        $query = "SELECT * FROM `wikis` WHERE  id = ? ";
+        $query = "SELECT wikis.title, wikis.content, users.first_name, users.last_name, categories.name AS category_name FROM wikis
+        JOIN users ON wikis.user_id = users.id
+        JOIN categories ON wikis.category_id = categories.id
+        WHERE wikis.id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([ $this->getId()]);
-        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $stmt->execute([$this->getId()]);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
         if ($result) {
             return $result;
         } else {
             return false;
         }
-
     }
 }

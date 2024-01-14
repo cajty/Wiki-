@@ -17,17 +17,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="http://localhost/Wiki-/Accueil">Accueil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Admin</a>
-                    </li>
                 </ul>
+                <div class="dropdown">
+                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Login
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="http://localhost/Wiki-/public/Account">Sign in</a></li>
+                        <li><a class="dropdown-item" href="http://localhost/Wiki-/public/login">Login</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
     </nav>
-    

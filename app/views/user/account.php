@@ -3,7 +3,7 @@
     <div class="container p-5">
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 col-sm-8 border rounded mb-2 p-3">
-                <h1 class="text-center">Login</h1>
+                <h1 class="text-center">Create account</h1>
                 <form action="http://localhost/Wiki-/public/Account/registration" method="POST">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>

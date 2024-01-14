@@ -4,6 +4,7 @@
 namespace App\models;
 
 use App\core\Database;
+use PDO;
 
 
 class WikiTagsModel extends Database
@@ -12,10 +13,12 @@ class WikiTagsModel extends Database
     private $wiki_id;
     private $tag_id;
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
     public function getWikiId()
@@ -52,7 +55,7 @@ class WikiTagsModel extends Database
             return false;
         }
     }
-    
+
 
     public function deleteByWiki()
     {
@@ -64,6 +67,19 @@ class WikiTagsModel extends Database
             return true;
         } else {
             return false;
+        }
+    }
+    public function getTagsOfWiki()
+    {
+        $conn =  $this->connect();
+        $sql = "SELECT  tags.name FROM wikitags
+        JOIN tags ON wikitags.tag_id = tags.id
+        WHERE wikitags.wiki_id = ? ";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->getWikiId()]);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($result) {
+            return $result;
         }
     }
 }
