@@ -69,6 +69,19 @@ class WikiTagsModel extends Database
             return false;
         }
     }
+
+    public function deleteByTags()
+    {
+        $conn =  $this->connect();
+        $sql = "DELETE FROM `wikitags` WHERE `tag_id` = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->getTagId()]);
+        if ($stmt) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function getTagsOfWiki()
     {
         $conn =  $this->connect();

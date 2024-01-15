@@ -61,11 +61,11 @@ class UserModel extends Database{
     {
         $conn =  $this->connect();
         $sql = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`, `isAdmin`) VALUES (:firstname, :lastname,:email ,:hashedPassword, :isAdmin )";
-        $hashedPassword = password_hash($this->getPassword(), PASSWORD_DEFAULT);
+
         $query = $conn->prepare($sql);
         $query->bindValue(':firstname',  $this->getFirstname());
         $query->bindValue(':lastname', $this->getLastname());
-        $query->bindValue(':hashedPassword', $hashedPassword);
+        $query->bindValue(':hashedPassword',$this->getPassword());
         $query->bindValue(':email', $this->getEmail());
         $query->bindValue(':isAdmin', $this->getIsAdmin());
         
@@ -78,15 +78,15 @@ class UserModel extends Database{
     }
     
 
-    public function loginUser($email, $password)
+    public function loginUser()
     {
         $conn =  $this->connect();
         $sql = "SELECT * FROM `users` where email = :email";
         $query = $conn->prepare($sql);
-        $query->bindValue(':email',$email);
+        $query->bindValue(':email',$this->getEmail());
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
-        if ($result ) {
+        if ($result && $result->password == $this->getPassword() ) {
 
             return $result;
         } else {

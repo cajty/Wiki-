@@ -16,7 +16,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form action="http://localhost/Wiki-/public/Auteur/createWiki" method="POST">
+                <form action="http://localhost/Wiki-/public/Auteur/createWiki" method="POST" id="wikiForm" >
                         <div class="mb-3">
                             <label for="exampleFormControlSelect1" class="form-label">Category</label>
                             <select class="form-select" name="selectCategorie" id="exampleFormControlSelect1">
@@ -31,7 +31,7 @@
                                 <?php foreach ($t as $row) { ?>
                                     <div class="col-md-3">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="<?= $row->id; ?>" name="selectTag[]" value="<?= $row->id; ?>">
+                                            <input type="checkbox" class="form-check-input" id="<?= $row->id; ?>" name="selectTag[]" value="<?= $row->id; ?>" >
                                             <label class="form-check-label" for="<?= $row->name; ?>"><?= $row->name; ?></label>
                                         </div>
                                     </div>

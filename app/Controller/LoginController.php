@@ -58,8 +58,9 @@ class LoginController
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-
-            $user =  $this->user->loginUser($email, $password);
+            $this->user-> setEmail($email);
+            $this->user->setPassword($password);
+            $user =  $this->user->loginUser();
 
 
             if ($user) {

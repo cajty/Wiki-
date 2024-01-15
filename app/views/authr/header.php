@@ -9,13 +9,9 @@
     <style>
         .side {
             height: 95vh;
-           
-           
-           
         }
     </style>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -26,24 +22,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="http://localhost/Wiki-/public/Admin/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="http://localhost/Wiki-/public/Auteur/">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/Wiki-/Accueil">Accueil</a>
-                        
-                    </li>
-                    <li class="nav-item dropdown d-md-none d-block ">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Admin
-                        </a>
-                        <ul class="dropdown-menu ">
-                            <li class="list-group-item"><a href="http://localhost/Wiki-/public/Admin/">wiki</a></li>
-                            <li class="list-group-item"> <a href="http://localhost/Wiki-/public/Admin/getTags">tag</a></li>
-                            <li class="list-group-item"><a href="http://localhost/Wiki-/public/Admin/getCategories">Categorie</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link"   href="http://localhost/Wiki-/public/Auteur/" >Auteur</a>  
+                        <a class="nav-link" href="http://localhost/Wiki-/Accueil">Accueil</a>
+
                     </li>
                 </ul>
                 <div class="dropdown">
@@ -57,4 +40,3 @@
             </div>
         </div>
     </nav>
-   

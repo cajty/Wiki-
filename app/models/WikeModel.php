@@ -133,6 +133,13 @@ class WikeModel extends Database
         $stmt->execute([$this->getTitle(), $this->getContent(), $this->getCategoryId(), $this->getId()]);
     }
 
+    public function setCategoryIdNull()
+    {
+        $conn = $this->connect();
+        $query = "UPDATE `wikis` SET `category_id`= null WHERE `category_id` = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([$this->getCategoryId()]);
+    }
     public function deleteWiki()
     {
         $conn = $this->connect();
@@ -170,6 +177,38 @@ class WikeModel extends Database
             return $result;
         } else {
             return false;
+        }
+    }
+    public function searchByName($searchTerm) {
+        $conn = $this->connect();
+        $sql = "SELECT DISTINCT * FROM `wikis` WHERE `title` LIKE ? AND `visibility` = 1  ";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(["%$searchTerm%"]);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($result) {
+            return $result;
+        }
+    }
+    public function searchByCategory($categoryId) {
+        $conn = $this->connect();
+        $sql = "SELECT w.* FROM `wikis` w  JOIN `categories` wc ON w.`categoryID` = wc.`categoryID`  WHERE  wc.`categoryID` = ? AND w.`deletedAt` IS NULL"; 
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$categoryId]); 
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ); 
+        if ($result) {
+            return $result;
+        }
+    }
+    
+    
+    public function searchByTag($tagId) {
+        $conn = $this->connect();
+        $sql = "SELECT * FROM `wikis` join wiki_tags on wiki_tags.wikiID =wikis.wikiID  join tags on tags.tagID = wiki_tags.tagID  where tags.tagID = ? AND wikis.`deletedAt` IS NULL";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$tagId]);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($result) {
+            return $result;
         }
     }
 }
