@@ -1,14 +1,14 @@
 <div class="col-md-9 p-4">
     <h1 class="mb-4">Wiki </h1>
-    <h2>FOR visibility IF 1 visible and 0 invisible </h2>
     <div class="row">
+    <?php if (!empty($w)) { ?>
         <?php foreach ($w as $row) { ?>
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">
                             <?= $row->title  ?> <br> visibility:<?= $row->visibility ?> </h5>
-                        <p class="card-text"><?= $row->content ?></p>
+                            <a class='btn btn-outline-dark' href="http://localhost/Wiki-/Detail/edait/<?= $row->id ?>" ">Detail</a>
 
                         <button class='btn btn-primary btn-sm' data-bs-toggle="modal" data-bs-target="#update<?= $row->id ?>">Update</button>
                         <a class='btn btn-danger btn-sm' href="http://localhost/Wiki-/public/Auteur/deleteWiki/<?= $row->id ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
@@ -27,7 +27,7 @@
                                 <form action="http://localhost/Wiki-/public/Auteur/updateWiki/<?= $row->id ?>" method="POST">
                                     <div class="mb-3">
                                         <label for="exampleFormControlSelect1" class="form-label">Category</label>
-                                        <select class="form-select" name="selectCategorie" id="exampleFormControlSelect1">
+                                        <select class="form-select" name="selectCategorie" id="exampleFormControlSelect1" required>
                                             <?php foreach ($r as $row) { ?>
                                                 <option value="<?= $row->id; ?>"><?= $row->name; ?></option>
                                             <?php } ?>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Title</label>
-                                        <input type="text" class="form-control" name="title" id="exampleFormControlInput1"  required>
+                                        <input type="text" class="form-control" name="title" id="exampleFormControlInput1"   required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Content</label>
@@ -61,6 +61,7 @@
                     </div>
                 </div>
             </div>
+        <?php } ?>
         <?php } ?>
     </div>
 </div>

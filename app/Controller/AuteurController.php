@@ -29,25 +29,21 @@ class AuteurController
         if (isset($_SESSION['isAdmin'])) {
             $id_user =  $_SESSION['id'];
 
-
             $this->wiki->setUserId($id_user);
-            if ($w =  $this->wiki->getWikisAUthor()) {
+            $w =  $this->wiki->getWikisAUthor();
 
 
-                $r = $this->categorie->getCategories();
-                $t = $this->tag->getTags();
+            $r = $this->categorie->getCategories();
+            $t = $this->tag->getTags();
 
-                include_once("../app/views/admindashboard/header.php");
-                include_once("../app/views/authr/creatwiki.php");
-                include_once("../app/views/authr/wikiauthr.php");
-                include_once("../app/views/footer.php");
+            if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+                include_once("../app/views/authr/header.php");
             } else {
-                $r =  $this->categorie->getCategories();
-                $t =  $this->tag->getTags();
                 include_once("../app/views/admindashboard/header.php");
-                include_once("../app/views/authr/creatwiki.php");
-                include_once("../app/views/footer.php");
             }
+            include_once("../app/views/authr/creatwiki.php");
+            include_once("../app/views/authr/wikiauthr.php");
+            include_once("../app/views/footer.php");
         } else {
             include_once("../app/views/user/header.php");
             include_once("../app/views/user/login.php");
@@ -61,36 +57,40 @@ class AuteurController
             $title = $_POST['title'];
             $content = $_POST['content'];
             $category = $_POST['selectCategorie'];
-            $tag = $_POST['selectTag'];
-            
+            $tag = $_POST['selectTag'] ?? null;
+
             $id_user =  $_SESSION['id'];
-
-
-            $this->wiki->setTitle($title);
-            $this->wiki->setContent($content);
-            $this->wiki->setVisibility(0);
             $this->wiki->setUserId($id_user);
-            $this->wiki->setCategoryId($category);
-            $wiki_id =  $this->wiki->createWiki();
-            
-            $this->wikiTag->setWikiId($wiki_id);
-            foreach ($tag as $tag_id) {
-                $this->wikiTag->setTagId($tag_id);
-                $this->wikiTag->create();
+            if (!empty($title) && !empty($content) && !empty($category) && !empty($tag) && !empty($id_user)) {
+                $this->wiki->setTitle($title);
+                $this->wiki->setContent($content);
+                $this->wiki->setVisibility(0);
+
+                $this->wiki->setCategoryId($category);
+                $wiki_id =  $this->wiki->createWiki();
+
+                $this->wikiTag->setWikiId($wiki_id);
+                foreach ($tag as $tag_id) {
+                    $this->wikiTag->setTagId($tag_id);
+                    $this->wikiTag->create();
+                }
             }
-
-
-
-
-            $r = $this->categorie->getCategories();
-            $t = $this->tag->getTags();
-            $w =  $this->wiki->getWikisAUthor();
-            include_once("../app/views/admindashboard/header.php");
-            include_once("../app/views/authr/creatwiki.php");
-            include_once("../app/views/authr/wikiauthr.php");
-            include_once("../app/views/footer.php");
         }
+
+        $r = $this->categorie->getCategories();
+        $t = $this->tag->getTags();
+        $w =  $this->wiki->getWikisAUthor();
+
+        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+            include_once("../app/views/authr/header.php");
+        } else {
+            include_once("../app/views/admindashboard/header.php");
+        }
+        include_once("../app/views/authr/creatwiki.php");
+        include_once("../app/views/authr/wikiauthr.php");
+        include_once("../app/views/footer.php");
     }
+
 
     public function updateWiki($wiki_id)
     {
@@ -98,28 +98,36 @@ class AuteurController
             $title = $_POST['title'];
             $content = $_POST['content'];
             $category = $_POST['selectCategorie'];
-            $tag = $_POST['selectTag'];
+            $tag = $_POST['selectTag'] ?? null;
             $id_user =  $_SESSION['id'];
-
-            $this->wiki->setTitle($title);
-            $this->wiki->setContent($content);
             $this->wiki->setUserId($id_user);
-            $this->wiki->setCategoryId($category);
-            $this->wiki->setId($wiki_id);
+            if (!empty($title) && !empty($content) && !empty($category) && !empty($tag) && !empty($id_user)) {
+                $this->wiki->setTitle($title);
+                $this->wiki->setContent($content);
 
-            $this->wiki->updateWiki();
+                $this->wiki->setCategoryId($category);
+                $this->wiki->setId($wiki_id);
 
-            $this->wikiTag->setWikiId($wiki_id);
-            $this->wikiTag->deleteByWiki();
-            foreach ($tag as $tag_id) {
-                $this->wikiTag->setTagId($tag_id);
-                $this->wikiTag->create();
+                $this->wiki->updateWiki();
+
+                $this->wikiTag->setWikiId($wiki_id);
+                $this->wikiTag->deleteByWiki();
+                foreach ($tag as $tag_id) {
+                    $this->wikiTag->setTagId($tag_id);
+                    $this->wikiTag->create();
+                }
             }
 
             $r = $this->categorie->getCategories();
             $t = $this->tag->getTags();
             $w =  $this->wiki->getWikisAUthor();
-            include_once("../app/views/admindashboard/header.php");
+
+            if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+                include_once("../app/views/authr/header.php");
+            } else {
+                include_once("../app/views/admindashboard/header.php");
+            }
+
             include_once("../app/views/authr/creatwiki.php");
             include_once("../app/views/authr/wikiauthr.php");
             include_once("../app/views/footer.php");
@@ -127,14 +135,24 @@ class AuteurController
     }
     public function deleteWiki($wiki_id)
     {
+        $id_user =  $_SESSION['id'];
+
+
+        $this->wiki->setUserId($id_user);
         $this->wikiTag->setWikiId($wiki_id);
         $this->wikiTag->deleteByWiki();
         $this->wiki->setId($wiki_id);
         $this->wiki->deleteWiki();
+
         $r = $this->categorie->getCategories();
         $t = $this->tag->getTags();
         $w =  $this->wiki->getWikisAUthor();
-        include_once("../app/views/admindashboard/header.php");
+
+        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+            include_once("../app/views/authr/header.php");
+        } else {
+            include_once("../app/views/admindashboard/header.php");
+        }
         include_once("../app/views/authr/creatwiki.php");
         include_once("../app/views/authr/wikiauthr.php");
         include_once("../app/views/footer.php");

@@ -85,8 +85,8 @@ class AdminController
 
     public function deleteTag($id)
     {
-
-
+        $this->wikiTag->setTagId($id);
+        $this->wikiTag->deleteByTags();
         $this->tag->delete($id);
         $tag =  $this->tag->getTags();
         include_once("../app/views/admindashboard/header.php");
@@ -140,7 +140,10 @@ class AdminController
 
     public function deleteCategories($id)
     {
-
+        $this->wikiTag->setWikiId($id);
+        $this->wikiTag->deleteByWiki();
+        $this->wiki->setCategoryId($id);
+        $this->wiki->setCategoryIdNull();
         $this->categorie->setId($id);
         $this->categorie->delete();
         $cat =  $this->categorie->getCategories();

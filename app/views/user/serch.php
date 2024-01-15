@@ -1,33 +1,45 @@
-<div class="container-fluid" <div class="p-4">
-    <div class="container-fluid ">
-        <h1 class="mb-4">wiki</h1>
+
+
+<style>
+    @media screen and (max-width: 765px) {
+        #sticky {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            z-index: 100;
+            background-color: white;
+            height: 200px;
+            margin-top: -110px;
+        }
+    }
+</style>
+
+
+<div class="container ">
+    <div class="row mt-4">
         <div class="col-md-3 " id="sticky">
-            <div  class="input-group">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
-                <input type="text" id="searchInput" oninput="search()" placeholder="Search" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <div>
+                <input type="text" id="searchInput" oninput="search()" placeholder="Search">
             </div>
+
+          
+           
         </div>
-        <div class="row p-4" id="wikisforuser">
-            <?php foreach ($r as $row) { ?>
-                <div class="col-md-4" >
-                    <div class="card m-2" style="width: 20rem;">
-                        <img src="assestes/img/wiki.jfif" class="card-img-top" alt="wiki">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $row->title ?> </h5>
-                            <p class="card-text"><?= $row->content ?></p>
-                            <a class='btn btn-outline-dark' href="http://localhost/Wiki-/Detail/edait/<?= $row->id ?>" ">Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-             
-    </div>
+        <div class="col-md-9 ">
+
+        <div id="wikisforuser">
+
+        </div>
+
+           
+
+
+
     <script>
         function search() {
 
             let input = document.getElementById("searchInput").value;
-            let url = `?uri=Accueil/searchtwo&search=${input}`;
+            let url = `?uri=accu/searchtwo&search=${input}`;
 
             let xml = new XMLHttpRequest();
             xml.onreadystatechange = function() {
@@ -67,4 +79,9 @@
             xml.send();
         }
     </script>
-  
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+    </html>
