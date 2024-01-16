@@ -39,32 +39,5 @@
             xml.send();
 
         }
-
-
-        function searchByCategory(id) {
-            let url = `?uri=wiki/searchByCategory&category=${id}`;
-
-            let xml = new XMLHttpRequest();
-            xml.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("wikisforuser").innerHTML = xml.responseText;
-                }
-            };
-            xml.open("GET", url, true);
-            xml.send();
-        }
-
-        function searchByTag(id) {
-            let url = `?uri=wiki/searchByTag&tag=${id}`;
-
-            let xml = new XMLHttpRequest();
-            xml.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("wikisforuser").innerHTML = xml.responseText;
-                }
-            };
-            xml.open("GET", url, true);
-            xml.send();
-        }
     </script>
   

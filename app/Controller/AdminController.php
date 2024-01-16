@@ -32,6 +32,9 @@ class AdminController
 
         if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 0) {
             $w = $this->wiki->getWikis();
+            $wikiTotle = $this->wiki->wikiTotle();
+            $categoryTotle =  $this->categorie->categoryTotle();
+            $tagTotle =    $this->tag->tagTotle();
             include_once("../app/views/admindashboard/header.php");
             include_once("../app/views/admindashboard/side.php");
             include_once("../app/views/admindashboard/wiki.php");
@@ -184,6 +187,16 @@ class AdminController
         include_once("../app/views/admindashboard/header.php");
         include_once("../app/views/admindashboard/side.php");
         include_once("../app/views/admindashboard/wiki.php");
+        include_once("../app/views/footer.php");
+    }
+
+    public function statistique(){
+       
+        
+
+        include_once("../app/views/admindashboard/header.php");
+        include_once("../app/views/admindashboard/side.php");
+        include_once("../app/views/admindashboard/statistique.php");
         include_once("../app/views/footer.php");
     }
 }

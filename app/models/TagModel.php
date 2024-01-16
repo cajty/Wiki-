@@ -74,4 +74,13 @@ class TagModel extends Database
             return $result;
         }
     }
+    public function tagTotle()
+    {
+        $conn =  $this->connect();
+        $sql = "SELECT COUNT(*) as tagT FROM tags";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchColumn();;
+        return $result;
+    }
 }

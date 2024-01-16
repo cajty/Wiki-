@@ -9,9 +9,9 @@
     <style>
         .side {
             height: 95vh;
-           
-           
-           
+
+
+
         }
     </style>
 </head>
@@ -29,12 +29,12 @@
                         <a class="nav-link active" aria-current="page" href="http://localhost/Wiki-/public/Admin/">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/Wiki-/Accueil">Accueil</a>
-                        
+                        <a class="nav-link" href="http://localhost/Wiki-/Accueil">Accueil</a>
+
                     </li>
                     <li class="nav-item dropdown d-md-none d-block ">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Admin
+                            Admin
                         </a>
                         <ul class="dropdown-menu ">
                             <li class="list-group-item"><a href="http://localhost/Wiki-/public/Admin/">wiki</a></li>
@@ -43,7 +43,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link"   href="http://localhost/Wiki-/public/Auteur/" >Auteur</a>  
+                        <a class="nav-link" href="http://localhost/Wiki-/public/Auteur/">Auteur</a>
                     </li>
                 </ul>
                 <div class="dropdown">
@@ -57,4 +57,3 @@
             </div>
         </div>
     </nav>
-   

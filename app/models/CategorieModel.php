@@ -76,4 +76,17 @@ class CategorieModel extends Database
         return $result;
     }
 
+    public function categoryTotle()
+    {
+        $conn =  $this->connect();
+
+        $sql = "SELECT COUNT(*) as categoryT FROM categories";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchColumn();;
+        return $result;
+
+    }
 }
+
+

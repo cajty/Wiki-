@@ -24,6 +24,7 @@ class DetailController
         $wikiTag = new WikiTagsModel();
         $wikiTag->setWikiId($id);
         $tags = $wikiTag->getTagsOfWiki();
+        
 
         if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
             include_once("../app/views/authr/header.php");
@@ -33,6 +34,7 @@ class DetailController
         }else{
             include_once("../app/views/user/header.php");
         }
+       
         include_once("../app/views/user/detailwiki.php");
         include_once("../app/views/footer.php");
     }

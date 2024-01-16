@@ -1,22 +1,18 @@
+<div class="container bg-secondary-subtle shadow-sm mt-4 p-2">
 
 
-    <div class="container">
-        <?php
-            
-            
-            echo '<h1>' . $d->title . '</h1>';
-            echo '<p>' . $d->content . '</p>';
-            echo '<p class="font-italic">By ' . $d->first_name . ' ' . $d->last_name . '</p>';
-            echo '<p>Category: ' . $d->category_name . '</p>';
-            
-            if (!empty($tags)) {
-                echo '<div class="mt-4">';
-                foreach ($tags as $tag) {
-                    echo '<span class="badge badge-primary mr-2">' . $tag->name . '</span>';
-                }
-                echo '</div>';
-            }
-        ?>
+
+    <h1> <?=$d->title  ?> </h1>
+    <p>  <?= $d->content ?> </p>
+    <p class="font-italic"> <?= $d->first_name ?>  <?=$d->last_name ?> </p>
+    <p>Category: <?= $d->category_name ?> </p>
+
+
+    <div class="mt-4">
+    <p>tags: </p>
+        <?php foreach ( $tags as $tag) { ?>
+        <span > #<?=$tag->name  ?> </span>
+        <?php } ?>  
     </div>
 
-   
+</div>
