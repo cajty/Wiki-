@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Login</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-3">
-        <div class="container">
-            <a class="navbar-brand" href="#">My Website</a>
-        </div>
-    </nav>
 
     <div class="container p-5">
+        
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 col-sm-8 border rounded mb-2 p-3">
-                <h1 class="text-center">Login</h1>
-                <form action="Account/register" method="POST">
+                <h1 class="text-center">Create account</h1>
+                <form action="http://localhost/Wiki-/public/Account/registration" method="POST" onsubmit="return validateForm()">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
                         <input type="text" class="form-control" name="firstname" id="firstName">
@@ -45,14 +31,6 @@
             </div>
         </div>
     </div>
+ 
 
-    <footer class="footer text-center py-3 bg-secondary text-white">
-        <div class="container">
-            <p>&copy; 2023 My Website. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-
-</html>
+   

@@ -7,10 +7,15 @@ use PDO;
 
 class TagModel extends Database
 {
-
+    private $id;
     private $name;
 
-
+    public function getId(){
+        return $this->id;
+    }
+    public function setId($id){
+        $this->id = $id;
+    }
     public function setName($name)
     {
         $this->name = $name;
@@ -68,5 +73,14 @@ class TagModel extends Database
         if ($result) {
             return $result;
         }
+    }
+    public function tagTotle()
+    {
+        $conn =  $this->connect();
+        $sql = "SELECT COUNT(*) as tagT FROM tags";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchColumn();;
+        return $result;
     }
 }

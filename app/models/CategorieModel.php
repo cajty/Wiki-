@@ -9,8 +9,15 @@ use PDO;
 
 class CategorieModel extends Database
 {
-
+    private $id;
     private $name;
+
+    public function getId(){
+        return $this->id;
+    }
+    public function setId($id){
+        $this->id = $id;
+    }
 
     public function setName($name)
     {
@@ -46,13 +53,13 @@ class CategorieModel extends Database
     }
 
 
-    public function update($id)
+    public function update()
     {
 
         $conn =  $this->connect();
         $sql = "UPDATE `categories`   SET `name` = ?  WHERE id = ? ";
         $stmt = $conn->prepare($sql);
-        $result =  $stmt->execute([$this->getName(), $id]);
+        $result =  $stmt->execute([$this->getName(), $this->getId()]);
         if ($result) {
             return true;
         }
@@ -60,13 +67,26 @@ class CategorieModel extends Database
 
     
 
-    public function delete($id)
+    public function delete()
     {
         $conn =  $this->connect();
         $sql = "DELETE FROM `categories` WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $result = $stmt->execute([$id]);
+        $result = $stmt->execute([$this->getId()]);
         return $result;
     }
 
+    public function categoryTotle()
+    {
+        $conn =  $this->connect();
+
+        $sql = "SELECT COUNT(*) as categoryT FROM categories";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchColumn();;
+        return $result;
+
+    }
 }
+
+
