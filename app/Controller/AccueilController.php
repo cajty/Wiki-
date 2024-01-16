@@ -43,32 +43,4 @@ class AccueilController
         }
     }
 
-    public function searchByCategory()
-    {
-        if (isset($_GET['category'])) {
-            $categoryId = $_GET['category'];
-
-
-            $searchResults = $this->wiki->searchByCategory($categoryId);
-
-            if ($searchResults) {
-                include_once '../app/View/user/includesAjax/wiki.php';
-            }
-        }
-    }
-
-
-    public function searchByTag()
-    {
-        if (isset($_GET['tag'])) {
-            $tagId = $_GET['tag'];
-
-
-            $searchResults = $this->wiki->searchByTag($tagId);
-
-            if ($searchResults) {
-                include_once '../app/View/user/includesAjax/wiki.php';
-            }
-        }
-    }
 }

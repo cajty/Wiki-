@@ -32,7 +32,7 @@ class AccountController
             $this->user->setLastname($lastname);
             $this->user->setEmail($email);
             $this->user->setPassword($password);
-            $this->user->setIsAdmin(1);
+            $this->user->setIsAdmin(0);
             if ($this->user->registerUser()) {
                 include_once("../app/views/user/header.php");
                 include_once("../app/views/user/login.php");

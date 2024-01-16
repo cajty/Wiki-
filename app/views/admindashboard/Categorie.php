@@ -6,7 +6,7 @@
                 <form action="http://localhost/Wiki-/public/Admin/creatCategories" method="POST">
                     <label for="name">Categorie Name:</label>
                     <input type="text" name="name" id="name">
-                    <input type="submit" name="submit" value="creatCategories">
+                    <input type="submit" name="submit" value="creat">
                 </form>
 
                 <div class="container-fluid">
